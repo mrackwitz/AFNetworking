@@ -57,4 +57,14 @@ Pod::Spec.new do |s|
     ss.ios.source_files = 'UIKit+AFNetworking'
     ss.osx.source_files = ''
   end
+
+  s.subspec 'AppExtensionAPIOnly' do |ss|
+    ss.ios.deployment_target = '6.0'
+
+    ss.source_files = 'AFNetworking/AFNetworking.h'
+
+    preprocessor_definitions = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'AF_APP_EXTENSIONS=1' }
+    ss.user_target_xcconfig = preprocessor_definitions
+    ss.pod_target_xcconfig  = preprocessor_definitions
+  end
 end
